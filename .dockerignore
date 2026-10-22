@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+facturas/
+*.pdf
+.git/
+__pycache__/
+.venv/
+venv/

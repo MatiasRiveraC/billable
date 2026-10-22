@@ -1,0 +1,15 @@
+services:
+  billable:
+    build: .
+    container_name: billable
+    restart: unless-stopped
+    # Run as your host user so saved PDFs belong to you (find yours with `id -u` and `id -g`).
+    user: "${PUID:-1000}:${PGID:-1000}"
+    ports:
+      - "${PORT:-5050}:5000"
+    env_file:
+      - .env
+    environment:
+      - FACTURAS_DIR=/data/facturas
+    volumes:
+      - ${FACTURAS_HOST_DIR:-./facturas}:/data/facturas
